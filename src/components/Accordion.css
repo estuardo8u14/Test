@@ -1,0 +1,70 @@
+/* Accordion.css */
+.accordion {
+  border: 1px solid #553ca1;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column; /* Make content stack vertically */
+}
+
+.accordion.collapsed .accordion-button {
+  background-color: #f0f0f0;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.accordion-button {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.arrow-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+/* Recursive padding */
+.accordion-title {
+  padding-right: 30rem;
+}
+
+.accordion-title .accordion-title {
+  padding-right: 25rem;
+}
+
+.accordion-title .accordion-title .accordion-title {
+  padding-right: 20rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .accordion-title {
+    padding-right: 10rem;
+  }
+
+  .accordion-title .accordion-title {
+    padding-right: 5rem;
+  }
+
+  .accordion-title .accordion-title .accordion-title {
+    padding-right: 2rem;
+  }
+
+  /* Adjust padding and styles as needed for smaller screens */
+}
