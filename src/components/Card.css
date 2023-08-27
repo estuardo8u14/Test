@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+.title-and-search {
+  display: flex;
+  align-items: center;
+}
+
+.title-and-search h2 {
+  margin: 0;
+}
+
+.title-and-search input {
+  color: aliceblue;
+  margin-left: 10px; /* Adjust the margin as needed */
+  padding: 8px 40px 8px 10px; /* Add space for the icon on the left */
+  border: none;
+  border-radius: 10px;
+  background-color: #281f43;
+}
+
+.search-container input {
+  padding-left: 40px; /* Add space for the image on the left */
+}
+
+.search-container .searchlogo {
+  position: absolute;
+}
+.card {
+  width: 285px;
+  height: 174px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  width: calc(25% - 20px); /* 4 items in a row */
+  box-sizing: border-box;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/swarn.jpg"); /* Add your background image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position-x: fixed;
+  filter: blur(10px); /* Add the blur effect */
+  -webkit-filter: blur(8px);
+  z-index: 0; /* Position the pseudo-element behind the card content */
+}
+.card .card-content {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 16px;
+  position: relative;
+}
+
+.card .profile {
+  width: 105px;
+  height: 100%;
+  position: relative;
+  border-radius: 10px;
+}
+
+.card-info {
+  font-family: "Poppins", sans-serif;
+  text-align: start;
+  line-height: 1;
+  color: #ffffff;
+}
+.card-info .card-fullname {
+  font-family: "Poppins", sans-serif;
+  text-align: start;
+  line-height: 1;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 1200px) {
+  .card .card-info {
+    width: calc(33.33% - 20px); /* 3 items in a row */
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card .card-info {
+    width: calc(50% - 20px); /* 2 items in a row */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card .card-info {
+    width: 100%; /* 1 item in a row */
+  }
+}

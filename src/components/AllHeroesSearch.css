@@ -1,0 +1,95 @@
+.title-and-search {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: #281f43;
+  padding: 10px 0;
+  z-index: 100; /* Make sure it's above other content */
+}
+
+.title-and-search h2 {
+  margin: 0;
+  flex: 1; /* Expand to take available space */
+  color: white; /* Adjust text color */
+}
+
+.title-and-search input {
+  color: aliceblue;
+  padding: 8px 40px 8px 10px; /* Add space for the icon on the left */
+  border: none;
+  border-radius: 10px;
+  background-color: #281f43;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-container input {
+  padding-left: 40px; /* Add space for the image on the left */
+}
+
+.search-container .searchlogo {
+  position: absolute;
+  left: 10px; /* Adjust positioning */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically */
+}
+
+/* Card.css */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  width: calc(25% - 20px); /* 4 items in a row */
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.card-fullname {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.card-power {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+.fist-img {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+  .card .card-info {
+    width: calc(33.33% - 20px); /* 3 items in a row */
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card .card-info {
+    width: calc(50% - 20px); /* 2 items in a row */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card .card-info {
+    width: 100%; /* 1 item in a row */
+  }
+}

@@ -1,14 +1,12 @@
 /* Accordion.css */
 .accordion {
+  background-color: #2a1b57;
   border: 1px solid #553ca1;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-bottom: 10px;
   display: flex;
-  flex-direction: column; /* Make content stack vertically */
-}
-
-.accordion.collapsed .accordion-button {
-  background-color: #f0f0f0;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .accordion-header {
@@ -21,10 +19,12 @@
 }
 
 .accordion-button {
-  background-color: #fff;
+  color: #ffffff71;
+  background-color: #3f3268;
   border: none;
   cursor: pointer;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
@@ -34,14 +34,46 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.arrow-icon {
-  font-size: 1.2rem;
-  transition: transform 0.3s;
+.accordion-button-heart {
+  color: #ffffff71;
+  background-color: #6a4dbc;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.accordion.expanded .arrow-icon {
+  transform: rotate(-360deg);
+  transition: transform 0.5s ease;
+}
+
+.accordion.collapsed .arrow-icon {
+  transform: rotate(180deg);
+  transition: transform 0.5s ease;
+}
+
+.accordion.expanded {
+  background-color: #11072f;
 }
 
 /* Recursive padding */
 .accordion-title {
-  padding-right: 30rem;
+  padding-right: 40rem; /* Remove the padding */
+  display: flex; /* Add flex display */
+  align-items: center; /* Align items vertically in the center */
+}
+.title-text {
+  margin-left: 10px; /* Add some spacing between the heart icon and the title */
+  font-size: larger;
+  color: #ffffff; /* Set the text color */
 }
 
 .accordion-title .accordion-title {
