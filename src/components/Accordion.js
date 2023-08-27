@@ -5,7 +5,7 @@ import arrow from "../assets/arrow-up/arrow-up.svg";
 import heart from "../assets/small-heart/small-heart.svg";
 
 const Accordion = ({ title, children }) => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleAccordion = () => {
     setIsCollapsed((prevCollapsed) => !prevCollapsed);

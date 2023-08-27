@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import "./Liked.css";
 import Card from "./Card";
-import Accordion from "../components/Accordion"; // Import the Accordion component
+import Accordion from "../components/Accordion";
+import bigheart from "../assets/big-heart/big-heart.svg";
+import smallheart from "../assets/small-heart/small-heart.svg"; // Import the small heart icon
+import midFilledHeart from "../assets/medium-filled-heart/medium-filled-heart.svg";
 
 export default class Liked extends Component {
   render() {
@@ -10,16 +13,24 @@ export default class Liked extends Component {
     return (
       <div className="row">
         <Accordion title="Liked">
-          {likedHeroes.map((hero) => (
-            <Card
-              key={hero.id}
-              name={hero.name}
-              fullName={hero.biography.fullName}
-              picture={hero.images.sm}
-              power={hero.powerstats}
-              onClick={() => this.handleHeroClick(hero)}
-            />
-          ))}
+          {likedHeroes.length === 0 ? (
+            <div>
+              <img src={bigheart} alt="bigheart" />
+              <p>You haven't liked any superhero yet</p>
+            </div>
+          ) : (
+            likedHeroes.map((hero) => (
+              <Card
+                key={hero.id}
+                name={hero.name}
+                fullName={hero.biography.fullName}
+                picture={hero.images.sm}
+                power={hero.powerstats}
+                isLiked={true} // Since these are liked heroes
+                onClick={() => this.props.handleHeroClick(hero)} // Use the prop here
+              />
+            ))
+          )}
         </Accordion>
       </div>
     );

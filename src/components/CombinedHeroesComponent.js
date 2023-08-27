@@ -4,6 +4,7 @@ import "./AllHeroesSearch.css";
 import searchlogo from "../assets/search/search.svg";
 import { fetchHeroesData } from "../FetchHeroesData";
 import Liked from "./Liked";
+import cancelIcon from "../assets/cancel/cancel.svg";
 
 export default class CombinedHeroesComponent extends Component {
   constructor(props) {
@@ -39,6 +40,10 @@ export default class CombinedHeroesComponent extends Component {
     this.setState({ searchText, filteredHeroes });
   };
 
+  clearSearchInput = () => {
+    this.setState({ searchText: "" });
+  };
+
   handleHeroClick = (hero) => {
     const { likedHeroes } = this.state;
 
@@ -66,9 +71,14 @@ export default class CombinedHeroesComponent extends Component {
 
     return (
       <div>
-        <Liked likedHeroes={likedHeroes} />
+        <Liked
+          likedHeroes={likedHeroes}
+          handleHeroClick={this.handleHeroClick}
+        />
         <div className="title-and-search">
-          <h2>All Superheroes</h2>
+          <h2 style={{ textAlign: "left", marginRight: "auto" }}>
+            All Superheroes
+          </h2>
 
           <div className="search-container">
             <input
@@ -77,6 +87,14 @@ export default class CombinedHeroesComponent extends Component {
               value={searchText}
               onChange={this.handleSearchChange}
             />
+            {searchText && (
+              <button
+                className="clear-button"
+                onClick={() => this.setState({ searchText: "" })}
+              >
+                <img src={cancelIcon} alt="Cancel" className="cancel-icon" />
+              </button>
+            )}
             <img src={searchlogo} alt="searchlogo" className="searchlogo" />
           </div>
         </div>
@@ -89,6 +107,9 @@ export default class CombinedHeroesComponent extends Component {
               fullName={hero.biography.fullName}
               picture={hero.images.sm}
               power={hero.powerstats}
+              isLiked={likedHeroes.some(
+                (likedHero) => likedHero.id === hero.id
+              )}
               onClick={() => this.handleHeroClick(hero)}
             />
           ))}
