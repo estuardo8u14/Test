@@ -1,0 +1,5 @@
+.loading-container {
+  position: relative;
+  background-color: #6a4dbc;
+  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+}

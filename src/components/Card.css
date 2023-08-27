@@ -56,6 +56,7 @@
   -webkit-filter: blur(8px);
   z-index: 0; /* Position the pseudo-element behind the card content */
 }
+
 .card .card-content {
   z-index: 1;
   width: 100%;
@@ -105,6 +106,33 @@
   cursor: pointer;
   z-index: 2;
 }
+.newest-liked-card::after {
+  content: "Recently Liked";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #6a4dbc;
+  color: white;
+  padding: 2px 5px;
+  font-size: 12px;
+}
+/* .newest-liked {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #6a4dbc;
+  border-radius: 50%;
+  padding: 5px 10px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+} */
+
 @media screen and (max-width: 1200px) {
   .card .card-info {
     width: calc(33.33% - 20px); /* 3 items in a row */

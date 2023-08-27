@@ -14,12 +14,20 @@ const calculateAveragePower = (power) => {
   return averageDecimal;
 };
 
-const Card = ({ name, fullName, picture, power, isLiked, onClick }) => {
+const Card = ({
+  name,
+  fullName,
+  picture,
+  power,
+  isLiked,
+  onClick,
+  showNewestLiked,
+}) => {
   const averagePower = calculateAveragePower(power);
 
   return (
     <>
-      <div className="card">
+      <div className={`card ${showNewestLiked ? "newest-liked-card" : ""}`}>
         <div className="card-content">
           <img src={picture} alt="profilepic" className="profile" />
           <button onClick={onClick} className="circle-button">

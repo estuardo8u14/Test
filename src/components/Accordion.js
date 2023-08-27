@@ -14,7 +14,7 @@ const Accordion = ({ title, children }) => {
   const accordionClass = isCollapsed ? "collapsed" : "expanded";
   const contentStyle = {
     maxHeight: isCollapsed ? "0" : "1000px", // Adjust the max height as needed
-    transition: "max-height 0.5s ease-in-out", // Add transition for smooth height change
+    transition: "max-height 0.3s ease-in-out", // Add transition for smooth height change
   };
 
   return (

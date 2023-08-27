@@ -6,26 +6,44 @@ import { fetchHeroesData } from "../FetchHeroesData";
 import Liked from "./Liked";
 import cancelIcon from "../assets/cancel/cancel.svg";
 
+import LoadingPage from "./LoadingPage";
+
 export default class CombinedHeroesComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       searchText: "",
       heroes: [],
       filteredHeroes: [],
       likedHeroes: [],
+      newestLikedHero: null,
     };
   }
 
   async componentDidMount() {
     try {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       const data = await fetchHeroesData();
       this.setState({
         heroes: data,
         filteredHeroes: data,
+        isLoading: false,
       });
+      // Restore likedHeroes from localStorage
+      const storedLikedHeroes = localStorage.getItem("likedHeroes");
+      if (storedLikedHeroes) {
+        const likedHeroIds = JSON.parse(storedLikedHeroes);
+        const likedHeroes = data.filter((hero) =>
+          likedHeroIds.includes(hero.id)
+        );
+        this.setState({ likedHeroes });
+      }
     } catch (error) {
       // Handle error here if needed
+      this.setState({
+        isLoading: false,
+      });
     }
   }
 
@@ -52,21 +70,56 @@ export default class CombinedHeroesComponent extends Component {
 
     if (isLiked) {
       // If already liked, remove from likedHeroes
-      this.setState({
-        likedHeroes: likedHeroes.filter(
-          (likedHero) => likedHero.id !== hero.id
-        ),
-      });
+      this.setState(
+        {
+          likedHeroes: likedHeroes.filter(
+            (likedHero) => likedHero.id !== hero.id
+          ),
+        },
+        () => {
+          // Update localStorage after setting state
+          this.updateLocalStorage();
+        }
+      );
     } else {
       // If not liked, add to likedHeroes
-      this.setState((prevState) => ({
-        likedHeroes: [...prevState.likedHeroes, hero],
-      }));
+      this.setState(
+        (prevState) => ({
+          likedHeroes: [...prevState.likedHeroes, hero],
+          newestLikedHero: hero,
+        }),
+        () => {
+          // Update localStorage after setting state
+          this.updateLocalStorage();
+          const likedContainer = document.getElementById("liked-container");
+          if (likedContainer) {
+            likedContainer.scrollTop = likedContainer.scrollHeight;
+          }
+        }
+      );
     }
   };
 
+  // Function to update localStorage with the current likedHeroes
+  updateLocalStorage = () => {
+    const { likedHeroes } = this.state;
+    const likedHeroIds = likedHeroes.map((hero) => hero.id);
+    localStorage.setItem("likedHeroes", JSON.stringify(likedHeroIds));
+  };
+
   render() {
-    const { searchText, filteredHeroes, likedHeroes } = this.state;
+    const {
+      isLoading,
+      searchText,
+      filteredHeroes,
+      likedHeroes,
+      newestLikedHero,
+    } = this.state;
+
+    if (isLoading) {
+      return <LoadingPage />;
+    }
+
     const displayHeroes = searchText ? filteredHeroes : this.state.heroes;
 
     return (
@@ -74,6 +127,7 @@ export default class CombinedHeroesComponent extends Component {
         <Liked
           likedHeroes={likedHeroes}
           handleHeroClick={this.handleHeroClick}
+          newestLikedHero={newestLikedHero}
         />
         <div className="title-and-search">
           <h2 style={{ textAlign: "left", marginRight: "auto" }}>
